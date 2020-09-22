@@ -1,4 +1,5 @@
 var express = require("express");
+var cfenv = require('cfenv');
 var passport = require("passport");
 var Strategy = require("passport-local").Strategy;
 const fileUpload = require("express-fileupload");
@@ -12,6 +13,9 @@ var Product = models.productModel;
 mongoose.connect(
   "mongodb://sssaini1:sssaini1@ds015879.mlab.com:15879/makeship"
 );
+
+const HOST = "0.0.0.0";
+
 
 passport.use(
   new Strategy(function (username, password, cb) {
@@ -44,6 +48,7 @@ passport.deserializeUser(function (id, cb) {
 });
 
 var app = express();
+app.set("port", 3000);
 
 app.use(fileUpload());
 app.use(express.static(__dirname + "/public"));
@@ -181,4 +186,10 @@ const setApprovalStatusForProductImage = (image, status) => {
     }
   );
 };
-app.listen(3000);
+var appEnv = cfenv.getAppEnv();
+// console.log(appEnv);
+// start server on the specified port and binding host
+app.listen(appEnv.port, '0.0.0.0', function() {
+	// print a message when the server starts listening
+	console.log("server starting on " + appEnv.url);
+});

@@ -5,6 +5,7 @@
   "author": "Sukhpal Saini",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cfenv": "^1.2.3",
     "connect-ensure-login": "^0.1.1",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
