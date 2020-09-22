@@ -1,0 +1,18 @@
+{
+  "name": "makeship",
+  "version": "0.0.0",
+  "description": "makeship",
+  "author": "Sukhpal Saini",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-ensure-login": "^0.1.1",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-session": "^1.16.1",
+    "mongoose": "^5.10.5",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}

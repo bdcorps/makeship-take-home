@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+	/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/home.css" />
+  </head>
+  <body>
+	  <div class="container">
+
+      <div class="row section">
+        <div>
+          <h2>Proposed Designs</h2>
+          <p>Please select the plushie designs to be approved</p>
+        </div>
+
+        <% for(var i=0; i < images.length; i++) { %>
+
+          <div class="col-md-12">
+            <% if (images[i].approved) { %>
+              <img class="img-fluid" style="width:50%; padding: 1rem; border: 2px solid green;" src='<%= images[i].image %>'></img>
+            <% } else { %>
+              <img class="img-fluid" style="width:50%;  padding: 1rem; border: 2px solid red;" src='<%= images[i].image %>'></img>
+            <% } %>
+          </div>
+  
+          <div class="col-md-12">
+          <button class="btn btn-primary" data-image=<%= images[i].image %> data-status="true">Approve</button>
+          <button class="btn btn-danger" data-image=<%= images[i].image %> data-status="false">Reject</button>
+        </div>
+      <% } %>
+
+      <div class="col-md-12">
+        <form ref='uploadForm' 
+        id='uploadForm' 
+        action='/upload' 
+        method='post' 
+        encType="multipart/form-data">
+          <input type="file" name="image" accept="image/png, image/jpeg" />
+          <input type='submit' value='Upload' />
+      </form>	
+      </div>
+    </div>
+
+
+
+    
+    
+<div class="row section">
+    <div>
+      <h2>Comments</h2>
+    </div>
+  <% for(var i=0; i < comments.length; i++) { %>
+    <div class="col-md-12">
+      <p><%= comments[i].user %>: <%= comments[i].comment %></p>
+    </div>
+<% } %>
+
+<div class="col-md-12">
+  <form  
+  action='/comment' 
+  method='post' >
+      <input name="comment" class="form-control" id="comment" placeholder="Enter a comment">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</div>
+
+<!-- 
+      <div class="row">
+
+        <%= JSON.stringify(images) %>
+        <%= JSON.stringify(comments) %>
+      </div> -->
+    </div>
+	
+
+<!-- <%= JSON.stringify(user) %> -->
+
+
+
+
+	  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/home.js"></script>
+  </body>
+</html>
+
+<!-- 
+
+
+<% if (!user) { %>
+	<p>Welcome! Please <a href="/login">log in</a>.</p>
+<% } else { %>
+	<p>Hello, <%= user.username %>. View your <a href="/profile">profile</a>.</p>
+<% } %> -->
