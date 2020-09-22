@@ -115,7 +115,7 @@ const getCommentsForProduct = async ()=>{
   return doc.comments;
 }
 
-app.post("/approval", function (
+app.post("/approval", require("connect-ensure-login").ensureLoggedIn(), function (
   req,
   res
 ) {
